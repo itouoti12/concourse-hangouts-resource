@@ -37,7 +37,6 @@ class GoogleChatNotifyResource:
         else:
             workspace = ""
         
-
         resource = {
             "in": self.in_res,
             "out": self.out_res,
@@ -121,8 +120,6 @@ Job: #{1} {2}
 
 if __name__ == '__main__':
     try:
-        print('sys.argv[1: = '.format(sys.argv[1:]))
-        print('sys.stdin.read() = {0}'.format(sys.stdin.read()))
         GoogleChatNotifyResource().run(os.path.basename(__file__), sys.stdin.read(), sys.argv[1:])
 
     except Exception as err:
