@@ -14,10 +14,10 @@ class GoogleChatNotifyResource:
     def send(self, url, msg, thread_name):
         """Construct the webhook request and send it."""
         headers = {'Content-Type': 'application/json; charset=UTF-8'}
-        if thread_name is None:
-            body = {'text': msg}
-        else:
-            body = {'text': msg,"thread": {"name": thread_name}}
+        # if thread_name is None:
+        #     body = {'text': msg}
+        # else:
+        body = {'text': msg,"thread": {"name": thread_name}}
 
         response = requests.request("POST", url, json=body, headers=headers)
 
