@@ -36,6 +36,9 @@ class GoogleChatNotifyResource:
             workspace = command_arguments[0]
         else:
             workspace = ""
+        
+        print("json_data = ",json_data)
+        print("workspace = ",workspace)
 
         resource = {
             "in": self.in_res,
