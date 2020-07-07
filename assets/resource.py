@@ -11,10 +11,13 @@ import traceback
 class GoogleChatNotifyResource:
     """Notify resource implementation."""
 
-    def send(self, url, msg):
+    def send(self, url, msg, thread_name):
         """Construct the webhook request and send it."""
         headers = {'Content-Type': 'application/json; charset=UTF-8'}
-        body = {'text': msg}
+        if thread_name:
+            body = {'text': msg,"thread": {"name": thread_name}}
+        else:
+            body = {'text': msg}
 
         response = requests.request("POST", url, json=body, headers=headers)
 
@@ -55,6 +58,7 @@ class GoogleChatNotifyResource:
         """Extract required params for out, construct message and send it."""
         url = source.get('webhook_url')
         message = params.get('message')
+        thread_name = source.get('thread_name')
         message_file = params.get('message_file')
         build_uuid = os.getenv('BUILD_ID')
         build_id = os.getenv('BUILD_NAME')
@@ -94,7 +98,7 @@ Job: #{1} {2}
             ]
             return response
 
-        status, text = self.send(url, text)
+        status, text = self.send(url, text, thread_name)
         api_res = json.loads(text)
 
         print("Successfully posted to GoogleChat!", file=sys.stderr)
