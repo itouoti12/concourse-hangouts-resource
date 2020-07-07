@@ -102,6 +102,9 @@ Job: #{1} {2}
         api_res = json.loads(text)
 
         print("Successfully posted to GoogleChat!", file=sys.stderr)
+        print("url:-\n%s" % url, file=sys.stderr)
+        print("message:-\n%s" % message, file=sys.stderr)
+        print("thread_name:-\n%s" % thread_name, file=sys.stderr)
         print("Message:-\n%s" % api_res.get('text'), file=sys.stderr)
 
         response["metadata"] = [
