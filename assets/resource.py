@@ -58,7 +58,7 @@ class GoogleChatNotifyResource:
         """Extract required params for out, construct message and send it."""
         url = source.get('webhook_url')
         message = params.get('message')
-        thread_name = source.get('thread_name')
+        thread_name = params.get('thread_name')
         message_file = params.get('message_file')
         build_uuid = os.getenv('BUILD_ID')
         build_id = os.getenv('BUILD_NAME')
